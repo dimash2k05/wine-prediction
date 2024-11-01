@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wine Quality Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Wine Quality Prediction</h1>
+    <form action="/predict" method="POST">
+        <label for="type">Type:</label>
+        <select name="type" id="type">
+            <option value="white">White</option>
+            <option value="red">Red</option>
+        </select><br>
+
+        <label for="fixed acidity">Fixed Acidity:</label>
+        <input type="text" name="fixed acidity" id="fixed acidity" required><br>
+
+        <label for="volatile acidity">Volatile Acidity:</label>
+        <input type="text" name="volatile acidity" id="volatile acidity" required><br>
+
+        <label for="citric acid">Citric Acid:</label>
+        <input type="text" name="citric acid" id="citric acid" required><br>
+
+        <label for="residual sugar">Residual Sugar:</label>
+        <input type="text" name="residual sugar" id="residual sugar" required><br>
+
+        <label for="chlorides">Chlorides:</label>
+        <input type="text" name="chlorides" id="chlorides" required><br>
+
+        <label for="free sulfur dioxide">Free Sulfur Dioxide:</label>
+        <input type="text" name="free sulfur dioxide" id="free sulfur dioxide" required><br>
+
+        <label for="total sulfur dioxide">Total Sulfur Dioxide:</label>
+        <input type="text" name="total sulfur dioxide" id="total sulfur dioxide" required><br>
+
+        <label for="density">Density:</label>
+        <input type="text" name="density" id="density" required><br>
+
+        <label for="pH">pH:</label>
+        <input type="text" name="pH" id="pH" required><br>
+
+        <label for="sulphates">Sulphates:</label>
+        <input type="text" name="sulphates" id="sulphates" required><br>
+
+        <label for="alcohol">Alcohol:</label>
+        <input type="text" name="alcohol" id="alcohol" required><br>
+
+        <input type="submit" value="Predict">
+    </form>
+
+    {% if prediction %}
+    <h2>Predicted Quality: {{ prediction }}</h2>
+    {% endif %}
+</body>
+</html>
