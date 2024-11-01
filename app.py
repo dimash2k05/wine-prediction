@@ -13,10 +13,7 @@ wine_data_cleaned[numeric_cols] = wine_data_cleaned[numeric_cols].fillna(wine_da
 wine_data_encoded = pd.get_dummies(wine_data_cleaned, columns=['type'])
 
 x = wine_data_encoded.drop('quality', axis=1)
-print(x.columns)
 y = wine_data_encoded['quality']
-
-print(x.shape)
 
 scaler = StandardScaler()
 x_scaled = scaler.fit_transform(x)
@@ -33,38 +30,24 @@ def home():
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
-        features_dict = {
-            'type': request.form['type'],  # Keep this if needed, otherwise remove
-            'fixed acidity': float(request.form['fixed acidity']),
-            'volatile acidity': float(request.form['volatile acidity']),
-            'citric acid': float(request.form['citric acid']),
-            'residual sugar': float(request.form['residual sugar']),
-            'chlorides': float(request.form['chlorides']),
-            'free sulfur dioxide': float(request.form['free sulfur dioxide']),
-            'total sulfur dioxide': float(request.form['total sulfur dioxide']),
-            'density': float(request.form['density']),
-            'pH': float(request.form['pH']),
-            'sulphates': float(request.form['sulphates']),
-            'alcohol': float(request.form['alcohol']),
-        }
         type_red = 0
         type_white = 0
-        if features_dict['type'] == 'white':
+        if request.form['type'] == 'white':
             type_white = 1
         else:
             type_red = 1
         features = [
-            features_dict['fixed acidity'],
-            features_dict['volatile acidity'],
-            features_dict['citric acid'],
-            features_dict['residual sugar'],
-            features_dict['chlorides'],
-            features_dict['free sulfur dioxide'],
-            features_dict['total sulfur dioxide'],
-            features_dict['density'],
-            features_dict['pH'],
-            features_dict['sulphates'],
-            features_dict['alcohol'],
+            float(request.form['fixed acidity']),
+            float(request.form['volatile acidity']),
+            float(request.form['citric acid']),
+            float(request.form['residual sugar']),
+            float(request.form['chlorides']),
+            float(request.form['free sulfur dioxide']),
+            float(request.form['total sulfur dioxide']),
+            float(request.form['density']),
+            float(request.form['pH']),
+            float(request.form['sulphates']),
+            float(request.form['alcohol']),
             type_red,
             type_white
         ]
